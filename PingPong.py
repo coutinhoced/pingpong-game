@@ -29,7 +29,46 @@ paddle_2.shapesize(stretch_wid=5, stretch_len=1)
 paddle_2.penup()
 paddle_2.goto(350, 0)
 
+
+ball = turtle.Turtle()
+ball.shape("circle")
+ball.color("Red")
+ball.penup()
+ball.goto(0,0)
+# dx and dy represents how much units the ball moves to x and y co-ordinates
+ball.dx = 0.07
+ball.dy = -0.07
+
 step = 10
+
+def moveBall():
+    #the value for x and y are assigned with the steps of dx and dy
+    ball.setx(ball.xcor()+ball.dx)
+    ball.sety(ball.ycor()+ ball.dy)
+    x =ball.xcor()
+    y =ball.ycor()
+
+    if x > 390:
+        ball.setx(390)
+        ball.dx = ball.dx * -1
+    
+    if x < -390:
+        ball.setx(-390)
+        ball.dx = ball.dx * -1
+    
+    if y > 290:
+        ball.sety(290)
+        ball.dy = ball.dy * -1
+    
+    if y < -290:
+        ball.sety(-290)
+        ball.dy = ball.dy * -1
+
+
+
+
+
+
 
 #Funcion to move the paddle1 up
 def paddle_1_up():
@@ -46,7 +85,7 @@ def paddle_1_up():
 def paddle_1_down():    
     y= paddle_1.ycor()
     y = y-step    
-    paddle_1.sety(y)    
+    paddle_1.sety(y)     
     if y < -245:
         paddle_1.sety(-245)
 
@@ -98,6 +137,9 @@ def paddle_2_left():
         paddle_2.setx(10)
 
 
+
+
+
 #event to listen to key press
 screen.listen()
 #Call paddle_1_up function on press of W key to move the paddle up
@@ -132,6 +174,8 @@ screen.onkeypress(paddle_2_right, "Right")
 #continuously performs a turtle screen update .
 while(1):
     screen.update()
+    #call ball movement continuously
+    moveBall()
     
     
     
