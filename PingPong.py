@@ -29,6 +29,42 @@ paddle_2.shapesize(stretch_wid=5, stretch_len=1)
 paddle_2.penup()
 paddle_2.goto(350, 0)
 
+#Funcion to move the paddle1 up
+def paddle_1_up():
+    #retrieve y co-ordinate value 
+    y= paddle_1.ycor()
+    y = y+10
+    #moving the paddle up by y units
+    paddle_1.sety(y)
+    # if paddle reaches the edge of screen, stop further movement
+    if y > 245:
+        paddle_1.sety(245)
+
+#Funcion to move the paddle2 up
+def paddle_2_up():
+    #retrieve y co-ordinate value 
+    y= paddle_2.ycor()
+    y = y+10
+    #moving the paddle up by y units
+    paddle_2.sety(y)
+    # if paddle reaches the edge of screen, stop further movement
+    if y > 245:
+        paddle_2.sety(245)
+
+
+#event to listen to key press
+screen.listen()
+#Call paddle_1_up function on press of W key to move the paddle up
+# Assign multiple keys to the same function
+upKeys = ["w", "W"]
+for key in upKeys:
+    screen.onkeypress(paddle_1_up, key)
+
+screen.onkeypress(paddle_2_up, "Up")
+
+
+
+
 
 #continuously performs a turtle screen update .
 while(1):
