@@ -29,27 +29,73 @@ paddle_2.shapesize(stretch_wid=5, stretch_len=1)
 paddle_2.penup()
 paddle_2.goto(350, 0)
 
+step = 10
+
 #Funcion to move the paddle1 up
 def paddle_1_up():
     #retrieve y co-ordinate value 
     y= paddle_1.ycor()
-    y = y+10
+    y = y+step
     #moving the paddle up by y units
     paddle_1.sety(y)
     # if paddle reaches the edge of screen, stop further movement
     if y > 245:
         paddle_1.sety(245)
 
+#Funcion to move the paddle1 down
+def paddle_1_down():    
+    y= paddle_1.ycor()
+    y = y-step    
+    paddle_1.sety(y)    
+    if y < -245:
+        paddle_1.sety(-245)
+
+def paddle_1_right():
+    x = paddle_1.xcor()
+    x = x+step
+    paddle_1.setx(x)
+    if x > -10:
+        paddle_1.setx(-10)
+
+def paddle_1_left():
+    x = paddle_1.xcor()
+    x = x-step
+    paddle_1.setx(x)
+    if x < -350:
+        paddle_1.setx(-350)
+
 #Funcion to move the paddle2 up
 def paddle_2_up():
     #retrieve y co-ordinate value 
     y= paddle_2.ycor()
-    y = y+10
+    y = y+step
     #moving the paddle up by y units
     paddle_2.sety(y)
     # if paddle reaches the edge of screen, stop further movement
     if y > 245:
         paddle_2.sety(245)
+
+#Funcion to move the paddle2 down
+def paddle_2_down():    
+    y= paddle_2.ycor()
+    y = y-step   
+    paddle_2.sety(y)    
+    if y < -245:
+        paddle_2.sety(-245)
+
+def paddle_2_right():
+    x = paddle_2.xcor()
+    x = x+step
+    paddle_2.setx(x)
+    if x > 350:
+        paddle_2.setx(350)
+
+def paddle_2_left():
+    x = paddle_2.xcor()
+    x = x-step
+    paddle_2.setx(x)
+    if x < 10:
+        paddle_2.setx(10)
 
 
 #event to listen to key press
@@ -62,8 +108,25 @@ for key in upKeys:
 
 screen.onkeypress(paddle_2_up, "Up")
 
+downKeys = ["s", "S"]
+for key in downKeys:
+    screen.onkeypress(paddle_1_down, key)
+
+screen.onkeypress(paddle_2_down, "Down")
 
 
+leftKeys =["a", "A"]
+for key in leftKeys:
+    screen.onkeypress(paddle_1_left, key)
+
+screen.onkeypress(paddle_2_left, "Left")
+
+
+rightKeys =["d", "D"]
+for key in rightKeys:
+    screen.onkeypress(paddle_1_right, key)
+
+screen.onkeypress(paddle_2_right, "Right")
 
 
 #continuously performs a turtle screen update .
