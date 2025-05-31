@@ -39,6 +39,17 @@ ball.goto(0,0)
 ball.dx = 0.1
 ball.dy = -0.1
 
+score1 = 0
+score2 = 0
+scoreText = turtle.Turtle()
+
+scoreText.color("black")
+scoreText.hideturtle()
+scoreText.penup()
+scoreText.goto(0,260)
+scoreText.write("Player 1 : 0  Player 2 : 0", align="center", font=("Courier",22,"normal"))
+
+
 step = 10
 
 def moveBall():
@@ -190,6 +201,22 @@ while(1):
     #call ball movement continuously
     moveBall()
     checkCollision()
+    if ball.xcor() >= 350:
+        score1 = score1 +1
+        scoreText.clear()
+        scoreText.write("Player 1 : {} Player 2 : {}".format(score1, score2),align="center", font=("Courier",22,"normal"))    
+        ball.goto(0,0)
+        ball.dx = ball.dx * -1
+
+    if ball.xcor() < -350:
+        score2 = score2 +1
+        scoreText.clear()
+        scoreText.write("Player 1 : {} Player 2 : {}".format(score1, score2),align="center", font=("Courier",22,"normal"))    
+        ball.goto(0,0)
+        ball.dx = ball.dx * -1
+    
+
+
     
     
     
