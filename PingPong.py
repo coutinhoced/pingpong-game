@@ -36,13 +36,13 @@ ball.color("Red")
 ball.penup()
 ball.goto(0,0)
 # dx and dy represents how much units the ball moves to x and y co-ordinates
-ball.dx = 0.07
-ball.dy = -0.07
+ball.dx = 0.1
+ball.dy = -0.1
 
 step = 10
 
 def moveBall():
-    #the value for x and y are assigned with the steps of dx and dy
+    #the value for x and y are assigned for the steps of dx and dy
     ball.setx(ball.xcor()+ball.dx)
     ball.sety(ball.ycor()+ ball.dy)
     x =ball.xcor()
@@ -63,10 +63,6 @@ def moveBall():
     if y < -290:
         ball.sety(-290)
         ball.dy = ball.dy * -1
-
-
-
-
 
 
 
@@ -137,6 +133,23 @@ def paddle_2_left():
         paddle_2.setx(10)
 
 
+def checkCollision():
+    # range comparison to check the position of ball and paddle are within the vicinity 
+    if (paddle_1.xcor() + 20 >= ball.xcor() >= paddle_1.xcor() -20) and (paddle_1.ycor() + 60 >= ball.ycor() >= paddle_1.ycor() -60):
+        ball.dx = ball.dx * -1
+        ball.dy = ball.dy * -1
+        x = ball.xcor()
+        x = x +10
+        ball.setx(x)
+
+    if (paddle_2.xcor() + 20 >= ball.xcor() >= paddle_2.xcor() -20) and (paddle_2.ycor() + 60 >= ball.ycor() >= paddle_2.ycor() -60):
+        ball.dx = ball.dx * -1
+        ball.dy = ball.dy * -1
+        x = ball.xcor()
+        x = x -10
+        ball.setx(x)
+
+
 
 
 
@@ -176,7 +189,7 @@ while(1):
     screen.update()
     #call ball movement continuously
     moveBall()
-    
+    checkCollision()
     
     
     
